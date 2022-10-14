@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     private Boolean isGrounded = false; 
     private int health;
     private Vector3 startingPos = new Vector3(0f, 0f);
-    public float moveSpeed = 0.01f;
+    public float moveSpeed = 0.1f;
     public float jumpHeight = 400f;
     void Awake() 
     {  
