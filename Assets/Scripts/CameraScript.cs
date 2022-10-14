@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
 
-    void Update()
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
+
+    void FixedUpdate()
     {   
-        if (player.transform.position.x == transform.position.x + 2)
+        if (player.transform.position.x > transform.position.x + 5f)
         {
-            transform.position = player.transform.position + new Vector3(2, 1);
+            transform.position = transform.position + new Vector3(5f, 0f, 0f);
+        }
+        if (player.transform.position.x < transform.position.x - 5f) 
+        {
+            transform.position = transform.position + new Vector3(-5f, 0f, 0f);
+        }
+
+
+        if (player.transform.position.y > transform.position.y + 5f)
+        {
+            transform.position = transform.position + new Vector3(0f, 5f, 0f);
+        }
+        if (player.transform.position.y < transform.position.y - 5f) 
+        {
+            transform.position = transform.position + new Vector3(0f, -5f, 0f);
         }
         
     }

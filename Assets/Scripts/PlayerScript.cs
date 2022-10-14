@@ -10,9 +10,9 @@ public class PlayerScript : MonoBehaviour
     void Awake() 
     {
         rb2D = gameObject.AddComponent<Rigidbody2D>();
-        gameObject.AddComponent<BoxCollider2D>();
-
         rb2D.freezeRotation = true;
+
+        gameObject.AddComponent<BoxCollider2D>();
     } 
    
     void FixedUpdate()
