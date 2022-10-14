@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     {
         rb2D = gameObject.AddComponent<Rigidbody2D>();
         gameObject.AddComponent<BoxCollider2D>();
+
+        rb2D.freezeRotation = true;
     } 
    
     void FixedUpdate()
@@ -54,6 +56,11 @@ public class PlayerScript : MonoBehaviour
         {   
             IsGrounded = true;
         } 
+
+        if (col.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
