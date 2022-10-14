@@ -6,18 +6,25 @@ using System;
 public class PlayerScript : MonoBehaviour
 {    
     Rigidbody2D rb2D;
-    Boolean IsGrounded = false; 
+    Boolean isGrounded = false; 
+    Color red = new Color(255, 0, 0, 1);
+    int health;
+    Vector3 startingPos = new Vector3(0f, 0f);
     void Awake() 
-    {
+    {  
         rb2D = gameObject.AddComponent<Rigidbody2D>();
         rb2D.freezeRotation = true;
 
         gameObject.AddComponent<BoxCollider2D>();
+
+        health = 5;
+
+        
     } 
    
     void FixedUpdate()
     {           
-        if (Input.GetKey(KeyCode.Space) & IsGrounded)
+        if (Input.GetKey(KeyCode.Space) & isGrounded)
         {   
             rb2D.AddForce(transform.up * 400);
         }
@@ -54,12 +61,21 @@ public class PlayerScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground")
         {   
-            IsGrounded = true;
+            isGrounded = true;
         } 
 
         if (col.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            health -= 1;
+
+            if (health == 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                transform.position = startingPos;
+            }
         }
     }
 
@@ -67,11 +83,11 @@ public class PlayerScript : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground")
         {
-            IsGrounded = true;
+            isGrounded = true;
 
             if (Input.GetKey(KeyCode.Space))
             {
-                IsGrounded = false;
+                isGrounded = false;
             }
         }
     }
