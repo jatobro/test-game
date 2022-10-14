@@ -23,11 +23,28 @@ public class PlayerScript : MonoBehaviour
         
         if (Input.GetKey(KeyCode.RightArrow))
         {   
-            transform.position += new Vector3(0.1f, 0);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.position += new Vector3(0.16f, 0);
+            }
+            else
+            {
+                transform.position += new Vector3(0.1f, 0);
+            }
+            
+            
         } 
         else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.position += new Vector3(-0.1f, 0);
+        {   
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.position += new Vector3(-0.16f, 0);
+            }
+            else
+            {
+                transform.position += new Vector3(-0.1f, 0);
+            }
+            
         }
     }
 
