@@ -5,10 +5,12 @@ using System;
 
 public class PlayerScript : MonoBehaviour
 {    
-    Rigidbody2D rb2D;
-    Boolean isGrounded = false; 
-    int health;
-    Vector3 startingPos = new Vector3(0f, 0f);
+    private Rigidbody2D rb2D;
+    private Boolean isGrounded = false; 
+    private int health;
+    private Vector3 startingPos = new Vector3(0f, 0f);
+    public float moveSpeed = 0.01f;
+    public float jumpHeight = 400f;
     void Awake() 
     {  
         rb2D = gameObject.AddComponent<Rigidbody2D>();
@@ -17,7 +19,6 @@ public class PlayerScript : MonoBehaviour
         gameObject.AddComponent<BoxCollider2D>();
 
         health = 5;
-
         
     } 
    
@@ -25,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     {           
         if (Input.GetKey(KeyCode.Space) & isGrounded)
         {   
-            rb2D.AddForce(transform.up * 400);
+            rb2D.AddForce(transform.up * jumpHeight);
         }
 
         
@@ -33,11 +34,11 @@ public class PlayerScript : MonoBehaviour
         {   
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                transform.position += new Vector3(0.16f, 0);
+                transform.position += new Vector3(moveSpeed*1.6f, 0);
             }
             else
             {
-                transform.position += new Vector3(0.1f, 0);
+                transform.position += new Vector3(moveSpeed, 0);
             }
             
             
@@ -46,11 +47,11 @@ public class PlayerScript : MonoBehaviour
         {   
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                transform.position += new Vector3(-0.16f, 0);
+                transform.position += new Vector3(-1f*moveSpeed*1.6f, 0);
             }
             else
             {
-                transform.position += new Vector3(-0.1f, 0);
+                transform.position += new Vector3(-1f*moveSpeed, 0);
             }
             
         }
