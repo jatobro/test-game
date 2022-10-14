@@ -8,7 +8,6 @@ public class BoxScript : MonoBehaviour
     void Awake()
     {   
         gameObject.AddComponent<BoxCollider2D>();
-        
     }
 
 }
