@@ -7,7 +7,6 @@ public class PlayerScript : MonoBehaviour
 {    
     Rigidbody2D rb2D;
     Boolean isGrounded = false; 
-    Color red = new Color(255, 0, 0, 1);
     int health;
     Vector3 startingPos = new Vector3(0f, 0f);
     void Awake() 
