@@ -22,13 +22,13 @@ public class PlayerScript : MonoBehaviour
 
         health = 5;
 
-        lastTime = Time.time - 1.0f;
+        lastTime = Time.time - 0.5f;
         
     } 
    
     void FixedUpdate()
     {           
-        if (Input.GetKey(KeyCode.Space) & canJump & (Time.time - lastTime > 1.0f))
+        if (Input.GetKey(KeyCode.Space) & canJump & (Time.time - lastTime > 0.5f))
         {   
             rb2D.AddForce(transform.up * jumpHeight);
             lastTime = Time.time;
