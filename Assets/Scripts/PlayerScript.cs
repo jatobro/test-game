@@ -6,11 +6,13 @@ using System;
 public class PlayerScript : MonoBehaviour
 {    
     private Rigidbody2D rb2D;
-    private Boolean isGrounded = false; 
+    private Boolean canJump = false; 
     private int health;
     private Vector3 startingPos = new Vector3(0f, 0f);
+    private float lastTime;
     public float moveSpeed = 0.1f;
     public float jumpHeight = 400f;
+
     void Awake() 
     {  
         rb2D = gameObject.AddComponent<Rigidbody2D>();
@@ -19,14 +21,17 @@ public class PlayerScript : MonoBehaviour
         gameObject.AddComponent<BoxCollider2D>();
 
         health = 5;
+
+        lastTime = Time.time - 1.0f;
         
     } 
    
     void FixedUpdate()
     {           
-        if (Input.GetKey(KeyCode.Space) & isGrounded)
+        if (Input.GetKey(KeyCode.Space) & canJump & (Time.time - lastTime > 1.0f))
         {   
             rb2D.AddForce(transform.up * jumpHeight);
+            lastTime = Time.time;
         }
 
         
@@ -59,10 +64,12 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Ground")
+        if (col.gameObject.tag == "Climbable")
         {   
-            isGrounded = true;
-        } 
+            canJump = true;
+            
+        }    
+            
 
         if (col.gameObject.tag == "Enemy")
         {
@@ -81,13 +88,13 @@ public class PlayerScript : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Ground")
+        if (col.gameObject.tag == "Climbable")
         {
-            isGrounded = true;
+            canJump= true;
 
             if (Input.GetKey(KeyCode.Space))
             {
-                isGrounded = false;
+                canJump = false;
             }
         }
     }

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 74199035}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ce40ac3732457499add7d08ba1ae9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0.2
+  jumpHeight: 400
 --- !u!212 &74199036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -233,7 +235,7 @@ GameObject:
   - component: {fileID: 127847957}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Ground
+  m_TagString: Climbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1107,7 +1109,7 @@ GameObject:
   - component: {fileID: 1653653204}
   m_Layer: 0
   m_Name: Square (4)
-  m_TagString: Ground
+  m_TagString: Climbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1204,7 +1206,7 @@ GameObject:
   - component: {fileID: 1764299154}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Climbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
