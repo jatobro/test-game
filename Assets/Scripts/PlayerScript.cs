@@ -10,8 +10,10 @@ public class PlayerScript : MonoBehaviour
     private int health;
     private Vector3 startingPos = new Vector3(0f, 0f);
     private float lastTime;
+    private int numOfJumps = 2;
     public float moveSpeed = 0.1f;
     public float jumpHeight = 400f;
+    
 
     void Awake() 
     {  
@@ -28,11 +30,17 @@ public class PlayerScript : MonoBehaviour
    
     void FixedUpdate()
     {           
-        if (Input.GetKey(KeyCode.Space) & canJump & (Time.time - lastTime > 0.5f))
+        if (Input.GetKey(KeyCode.Space) & (Time.time - lastTime > 0.5f))
         {   
-            rb2D.AddForce(transform.up * jumpHeight);
-            lastTime = Time.time;
-        }
+            if (canJump | numOfJumps == 1)
+            {
+                rb2D.AddForce(transform.up * jumpHeight);
+                lastTime = Time.time;
+                numOfJumps -= 1;
+            }
+
+            
+        } 
 
         
         if (Input.GetKey(KeyCode.RightArrow))
@@ -67,7 +75,7 @@ public class PlayerScript : MonoBehaviour
         if (col.gameObject.tag == "Climbable")
         {   
             canJump = true;
-            
+            numOfJumps = 2;
         }    
             
 
