@@ -25,13 +25,13 @@ public class CameraScript : MonoBehaviour
             }
 
 
-            if (player.transform.position.y > transform.position.y + 7.5f)
+            if (player.transform.position.y > transform.position.y + 4f)
             {
-                transform.position = transform.position + new Vector3(0f, 7.5f, 0f);
+                transform.position = transform.position + new Vector3(0f, 4f, 0f);
             }
-            if (player.transform.position.y < transform.position.y - 7.5f) 
+            if (player.transform.position.y < transform.position.y - 4f) 
             {
-                transform.position = transform.position + new Vector3(0f, -7.5f, 0f);
+                transform.position = transform.position + new Vector3(0f, -4f, 0f);
             }
         }
         

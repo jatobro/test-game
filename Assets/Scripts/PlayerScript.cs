@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
 
         gameObject.AddComponent<BoxCollider2D>();
 
+        Physics.gravity = new Vector3(0, -9.8f);
+
         health = 5;
 
         lastTime = Time.time - 0.5f;
@@ -92,6 +94,13 @@ public class PlayerScript : MonoBehaviour
                 transform.position = startingPos;
             }
         }
+
+        if (col.gameObject.tag == "Clingable")
+        {
+            Physics.gravity = new Vector3(0, -1f);
+        }
+
+        
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -104,6 +113,14 @@ public class PlayerScript : MonoBehaviour
             {
                 canJump = false;
             }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Clingable")
+        {
+            Physics.gravity = new Vector3(0, -9.8f);
         }
     }
 
